@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/simplewall.css')}}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/simplewall.js')}}"></script>
+    <title>log in</title>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form action="/createaccount" method="post" class="register-form">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashfirstname']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="firstname" placeholder="First Name">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashlastname']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="lastname" placeholder="Last Name">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashusername']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="username" placeholder="User Name">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashpassword']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='password' name="password" placeholder="Password">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashconfirmpassword']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='password' name="confirmpassword" placeholder="Confirm Password">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashemail']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="email" placeholder="Email">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashtelephone']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="telephone" placeholder="Telephone Number">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashaddress']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="address" placeholder="Address">
+                <button>create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form>
+            <form action="/login" method="post" class="login-form">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashloginusername']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='text' name="loginusername" placeholder="User Name">
+                {%with messages= get_flashed_messages(with_categories=true,category_filter=['flashloginpassword']) %}
+                {%if messages%}
+                {%for category, message in messages%}
+                {{message}}
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <input class="{{category}}" type='password' name="loginpassword" placeholder="Password">
+                <button>login</button>
+                <p class="message">Not registered? <a href="#">Create an account</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
