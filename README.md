@@ -10,4 +10,10 @@
 
 ### Sign Up
 
-![signUp](https://raw.githubusercontent.com/MarcusYSera/Python/master/img/SignUp.png))
+![signUp](https://raw.githubusercontent.com/MarcusYSera/Python/master/img/SignUp.png)
+
+---
+
+### Message Dashboard
+
+---
