@@ -1,76 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/simplewall2.css')}}">
-    <script type="text/javascript" src="{{url_for('static',filename='js/simplewall.js')}}"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static',filename='css/simplewall2.css')}}"
+    />
+    <script
+      type="text/javascript"
+      src="{{url_for('static',filename='js/simplewall.js')}}"
+    ></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
     <title>CodingDojoWall</title>
-</head>
+  </head>
 
-<body class='back'>
-    <div class="container" style="padding-top:30px">
-        <h1 class="text-center">CodingDojo Wall (Simplified) <form action="/logout"><input class="btn btn-light" class="logout"
-                    type="submit" value="Log Out"></form>
-        </h1>
+  <body class="back">
+    <div class="container" style="padding-top: 30px">
+      <h1 class="text-center">
+        CodingDojo Wall (Simplified)
+        <form action="/logout">
+          <input
+            class="btn btn-light"
+            class="logout"
+            type="submit"
+            value="Log Out"
+          />
+        </form>
+      </h1>
+      <div class="col-sm-6">
+        <div id="tb-testimonial" class="testimonial testimonial-default">
+          <div class="testimonial-section">
+            <form action="/simplewallmessages" method="post">
+              <select name="receiver_id">
+                {%for i in usersidlist%}
+                <option class="option" value="{{i['id']}}">
+                  {{i['first_name']}}
+                </option>
+                {%endfor%}
+              </select>
+              <textarea class="form-control" name="textarea"></textarea>
+              <input type="submit" class="btn btn-primary" value="Send" />
+            </form>
+          </div>
+          <div class="testimonial-desc">
+            <img src="https://source.unsplash.com/random" alt="unsplash icon" />
+            <div class="testimonial-writer">
+              {%for i in infoforuser%}
+              <div class="testimonial-writer-name">{{i['full_name']}}</div>
+              <div class="testimonial-writer-designation">{{i['email']}}</div>
+              <a href="#" class="testimonial-writer-company"
+                >{{i['telephone']}}</a
+              >
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper-scroll-y">
+        {%for i in messages%}
         <div class="col-sm-6">
-            <div id="tb-testimonial" class="testimonial testimonial-default">
-                <div class="testimonial-section">
-
-                    <form action='/simplewallmessages' method='post'>
-                        <select name="receiver_id">
-                            {%for i in usersidlist%}
-                            <option class="option" value="{{i['id']}}">{{i['first_name']}}</option>
-                            {%endfor%}
-                        </select>
-                        <textarea class="form-control" name="textarea"></textarea>
-                        <input type="submit" class="btn btn-primary" value="Send">
-                    </form>
-                </div>
-                <div class="testimonial-desc">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                    <div class="testimonial-writer">
-                        {%for i in infoforuser%}
-                        <div class="testimonial-writer-name">{{i['full_name']}}</div>
-                        <div class="testimonial-writer-designation">{{i['email']}}</div>
-                        <a href="#" class="testimonial-writer-company">{{i['telephone']}}</a>
-                        {%endfor%}
-                    </div>
-                </div>
+          <div id="tb-testimonial" class="testimonial testimonial-primary">
+            <div class="testimonial-writer-designation">
+              <input
+                type="hidden"
+                name="timesincepost"
+                value="{{i['created_at']}}"
+              />
             </div>
-        </div>
-        <div class="table-wrapper-scroll-y">
-            {%for i in messages%}
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-primary">
-
-                    <div class="testimonial-writer-designation"><input type='hidden' name='timesincepost' value="{{i['created_at']}}"></div>
-                    <div class="testimonial-section">
-                        {{i['message']}}
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">{{i['full_name']}}</div>
-                            <div class="testimonial-writer-designation">{{i['username']}}</div>
-                            <div class="testimonial-writer-designation">{{i['email']}}</div>
-                            <a href="#" class="testimonial-writer-company">{{i['telephone']}}</a>
-                            <form action="/delete" method='post'>
-                                <input type='submit' class="btn btn-danger" value='Delete'>
-                                <input type='hidden' name="deletion" value="{{i['messages.id']}}">
-                            </form>
-                        </div>
-                    </div>
+            <div class="testimonial-section">{{i['message']}}</div>
+            <div class="testimonial-desc">
+              <img src="https://source.unsplash.com/user/erondu" alt="" />
+              <div class="testimonial-writer">
+                <div class="testimonial-writer-name">{{i['full_name']}}</div>
+                <div class="testimonial-writer-designation">
+                  {{i['username']}}
                 </div>
+                <div class="testimonial-writer-designation">{{i['email']}}</div>
+                <a href="#" class="testimonial-writer-company"
+                  >{{i['telephone']}}</a
+                >
+                <form action="/delete" method="post">
+                  <input type="submit" class="btn btn-danger" value="Delete" />
+                  <input
+                    type="hidden"
+                    name="deletion"
+                    value="{{i['messages.id']}}"
+                  />
+                </form>
+              </div>
             </div>
-            {%endfor%}
+          </div>
         </div>
+        {%endfor%}
+      </div>
     </div>
-<form action='/get_my_ip' method="get"><input type="submit" value="dockip" ></form>
+    <!-- <form action="/get_my_ip" method="get">
+      <input type="submit" value="dockip" />
+    </form> -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</body>
-
+  </body>
 </html>

@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 import re
 import datetime
 
+
 EMAIL_REGEX=re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 app=Flask(__name__)
 bcrypt=Bcrypt(app)
